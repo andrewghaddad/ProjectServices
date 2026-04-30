@@ -12,6 +12,8 @@ exports.handler = async (event) => {
       };
     }
 
+    console.log("Calling OpenAI API with query:", query);
+
     // Load env variables (Netlify handles this in prod)
     const prompt = process.env.PROMPT_TEMPLATE;
     const token = process.env.TOKEN;
@@ -27,7 +29,7 @@ exports.handler = async (event) => {
       baseURL: endpoint,
       apiKey: token,
     });
-    
+
     let response
     try {
         // Call API
@@ -43,6 +45,8 @@ exports.handler = async (event) => {
     } catch (error) {
         console.error("Error calling OpenAI API:", error);
     }
+
+    console.log("OpenAI API response:", response);
 
     const result = response.choices[0].message.content;
 
