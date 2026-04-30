@@ -7,6 +7,7 @@ const errorHandler = require('./middleware/errorHandler');
 dotenv.config();
 
 const app = express();
+const router = express.Router(); // Create a router for all routes
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
