@@ -24,6 +24,13 @@ exports.handler = async (event) => {
       throw new Error("Missing environment variables");
     }
 
+    console.log("Environment Variables:", {
+        prompt,
+        token,
+        endpoint,
+        model,
+    });
+
     // Initialize OpenAI client
     const client = new OpenAI({
       baseURL: endpoint,
