@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const serverless = require('serverless-http');
 const project1Controller = require('./controllers/andrewChatbotController');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -19,3 +20,5 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+module.exports.handler = serverless(app);

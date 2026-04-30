@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+
+[dev]
+  framework = "#custom"
+  command = "node index.js"
+  targetPort = 3000
