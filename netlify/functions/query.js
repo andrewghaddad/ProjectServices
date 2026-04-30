@@ -27,17 +27,22 @@ exports.handler = async (event) => {
       baseURL: endpoint,
       apiKey: token,
     });
-
-    // Call API
-    const response = await client.chat.completions.create({
-      messages: [
-        { role: "system", content: prompt },
-        { role: "user", content: query },
-      ],
-      temperature: 1,
-      top_p: 1,
-      model: model,
-    });
+    
+    let response
+    try {
+        // Call API
+        response = await client.chat.completions.create({
+            messages: [
+            { role: "system", content: prompt },
+            { role: "user", content: query },
+            ],
+            temperature: 1,
+            top_p: 1,
+            model: model,
+        });
+    } catch (error) {
+        console.error("Error calling OpenAI API:", error);
+    }
 
     const result = response.choices[0].message.content;
 
