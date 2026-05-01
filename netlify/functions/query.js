@@ -8,6 +8,10 @@ exports.handler = async (event) => {
     if (!query) {
       return {
         statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*", // Allow all origins
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
         body: JSON.stringify({ error: "Query is required" }),
       };
     }
@@ -59,12 +63,20 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow all origins
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
       body: JSON.stringify({ result }),
     };
 
   } catch (err) {
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow all origins
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
       body: JSON.stringify({
         error: err.message || "Something went wrong",
       }),
